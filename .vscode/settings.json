@@ -21,6 +21,7 @@
         "cmath": "c",
         "plane.h": "c",
         "config.h": "c",
-        "pacmandeath.wav.h": "c"
+        "pacmandeath.wav.h": "c",
+        "interrupts.h": "c"
     }
 }
