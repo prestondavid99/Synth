@@ -8,6 +8,19 @@
     "C_Cpp.clang_format_fallbackStyle": "LLVM",
     "files.associations": {
         "xparameters.h": "c",
-        "display.h": "c"
+        "display.h": "c",
+        "leds.h": "c",
+        "switches.h": "c",
+        "intervaltimer.h": "c",
+        "stdio.h": "c",
+        "stdbool.h": "c",
+        "touchscreen.h": "c",
+        "clockdisplay.h": "c",
+        "missile.h": "c",
+        "cstdlib": "c",
+        "cmath": "c",
+        "plane.h": "c",
+        "config.h": "c",
+        "pacmandeath.wav.h": "c"
     }
 }

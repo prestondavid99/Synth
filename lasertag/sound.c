@@ -23,6 +23,7 @@ For questions, contact Brad Hutchings or Jeff Goeders, https://ece.byu.edu/
 #include "xiicps.h"
 #include "xil_printf.h"
 #include "xil_types.h"
+#include "xparameters.h"
 
 /***************************************************************
  * Quite a bit of this code was obtained from digilentinc.com
@@ -43,10 +44,10 @@ For questions, contact Brad Hutchings or Jeff Goeders, https://ece.byu.edu/
 
 /* Redefine the XPAR constants */
 #define IIC_DEVICE_ID XPAR_XIICPS_0_DEVICE_ID
-#define I2S_ADDRESS XPAR_AXI_I2S_ADI_0_BASEADDR
+#define I2S_ADDRESS XPAR_AXI_I2S_ADI_0_S00_BASEADDR
 #define TIMER_DEVICE_ID XPAR_SCUTIMER_DEVICE_ID
 #define AUDIO_IIC_ID XPAR_XIICPS_0_DEVICE_ID
-#define AUDIO_CTRL_BASEADDR XPAR_AXI_I2S_ADI_1_S_AXI_BASEADDR
+#define AUDIO_CTRL_BASEADDR XPAR_AXI_I2S_ADI_0_S00_AXI_BASEADDR
 #define SCU_TIMER_ID XPAR_SCUTIMER_DEVICE_ID
 #define UART_BASEADDR XPAR_PS7_UART_1_BASEADDR
 
@@ -404,7 +405,7 @@ static int AudioRegSet(XIicPs *IIcPtr, u8 regAddr, u16 regData) {
   // while (XIicPs_BusIsBusy(IIcPtr)) {
   //   /* NOP */
   // }
-  // return XST_SUCCESS;
+  return XST_SUCCESS;
 }
 
 /***  AudioInitialize(u16 timerID,  u16 iicID, u32 i2sAddr)

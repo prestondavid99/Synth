@@ -15,7 +15,7 @@ For questions, contact Brad Hutchings or Jeff Goeders, https://ece.byu.edu/
 
 // Run switches and buttons runTest functions
 int main() {
-  // gpioTest_switches();
+  gpioTest_switches();
   gpioTest_buttons();
   return 0;
 }

@@ -348,7 +348,7 @@ static void drawUpDownButtons(int16_t color) {
   // Moving right, next button over three characters from origin.
   drawTriangleUpDownButton(MIDDLE_TRIANGLE_BUTTON_X_ORIGIN,
                            CLOCK_DISPLAY_ORIGIN_Y, false, color);
-  // Moving right, last button is over 6 characters from origin.
+  // Moving right, last button is over 6 characters from origin.s
   drawTriangleUpDownButton(CLOCK_DISPLAY_ORIGIN_X +
                                DISPLAY_CHAR_WIDTH * CLOCKDISPLAY_TEXT_SIZE *
                                    RIGHT_TRIANGLE_NUM_CHARS,
