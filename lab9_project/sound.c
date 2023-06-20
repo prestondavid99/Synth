@@ -12,22 +12,21 @@ For questions, contact Brad Hutchings or Jeff Goeders, https://ece.byu.edu/
 #include "interrupts.h" // Just for sound_runTest().
 #include "sound.h"
 
-#include "sounds/C4_sine.wav.h"
-#include "sounds/E4_sine.wav.h"
-#include "sounds/C4_E4_sine.wav.h"
-#include "sounds/C4_E4_sine.wav.h"
-#include "sounds/G4_sine.wav.h"
-#include "sounds/C4_G4_sine.wav.h"
-#include "sounds/E4_G4_sine.wav.h"
-#include "sounds/C4_E4_G4_sine.wav.h"
-#include "sounds/C5_sine.wav.h"
 #include "sounds/C4_C5_sine.wav.h"
-#include "sounds/E4_C5_sine.wav.h"
 #include "sounds/C4_E4_C5_sine.wav.h"
-#include "sounds/G4_C5_sine.wav.h"
-#include "sounds/C4_G4_C5_sine.wav.h"
-#include "sounds/E4_G4_C5_sine.wav.h"
 #include "sounds/C4_E4_G4_C5_sine.wav.h"
+#include "sounds/C4_E4_G4_sine.wav.h"
+#include "sounds/C4_E4_sine.wav.h"
+#include "sounds/C4_G4_C5_sine.wav.h"
+#include "sounds/C4_G4_sine.wav.h"
+#include "sounds/C4_sine.wav.h"
+#include "sounds/C5_sine.wav.h"
+#include "sounds/E4_C5_sine.wav.h"
+#include "sounds/E4_G4_C5_sine.wav.h"
+#include "sounds/E4_G4_sine.wav.h"
+#include "sounds/E4_sine.wav.h"
+#include "sounds/G4_C5_sine.wav.h"
+#include "sounds/G4_sine.wav.h"
 
 #include "sounds/gameBoyStartup.wav.h"
 #include "timer_ps.h"
@@ -100,9 +99,9 @@ typedef enum {
   sound_play_st  // In the process of playing the sound.
 } sound_st_t;
 
-uint16_t **soundsLUT[16] = {
-    no_sound,       C4_sine_wav,       E4_sine_wav,       C4_E4_sine_wav,
-    G4_sine_wav,    C4_G4_sine_wav,    E4_G4_sine_wav,    C4_E4_G4_sine_wave,
+uint16_t *soundsLUT[16] = {
+    soundOfSilence, C4_sine_wav,       E4_sine_wav,       C4_E4_sine_wav,
+    G4_sine_wav,    C4_G4_sine_wav,    E4_G4_sine_wav,    C4_E4_G4_sine_wav,
     C5_sine_wav,    C4_C5_sine_wav,    E4_C5_sine_wav,    C4_E4_C5_sine_wav,
     G4_C5_sine_wav, C4_G4_C5_sine_wav, E4_G4_C5_sine_wav, C4_E4_G4_C5_sine_wav};
 
@@ -119,7 +118,6 @@ static void sound_enableTxFifo() {
             0b001); // Enable TX Fifo, disable mute
 }
 
-// Disables the TX FIFO.
 static void sound_disableTxFifo() {
   Xil_Out32(AUDIO_CTRL_BASEADDR + I2S_CTRL_REG, 0b00); // Disable TX FIFO.
 }
@@ -231,8 +229,8 @@ void sound_tick() {
 }
 
 // Sets the sound and starts playing it immediately.
-void sound_playSound(sound_sounds_t sound) {
-  sound_setSound(sound); // Set the sound to be played.
+void sound_playSound(uint16_t switchIndex) {
+  sound_setSound(switchIndex); // Set the sound to be played.
   sound_startSound();    // Start playing the sound.
 }
 
@@ -246,41 +244,13 @@ bool sound_isSoundComplete() { return (!sound_isBusy()); }
 
 // Use this to set the base address for the array containing sound data.
 // Allow sounds to be interrupted.
-void sound_setSound(sound_sounds_t sound) {
+void sound_setSound(uint16_t switchIndex) {
   if (sound_isBusy()) { // You are currently playing some sound.
     sound_stopSound(); // Stop the sound and reset the state-machine, FIFO, etc.
   }
-  sound_array =
-      NULL; // Set the pointer to NULL so you can detect it never being set.
-  switch (sound) {
-  case sound_gameStart_e:
-    sound_array = gameBoyStartup_wav; // Set the array holding the data.
-    sound_sampleCount =
-        GAMEBOYSTARTUP_WAV_NUMBER_OF_SAMPLES; // Size of the array.
-    break;
-  case sound_oneSecondSilence_e:
-    sound_array = soundOfSilence;
-    sound_sampleCount = ONE_SECOND_OF_SOUND_ARRAY_SIZE;
-    break;
-  case sound_c4_sine_e:
-    sound_array = C4_sine_wav;
-    sound_sampleCount = C4_SINE_WAV_NUMBER_OF_SAMPLES;
-    break;
-  case sound_c4_e4_sine_e:
-    sound_array = C4_E4_sine_wav;
-    sound_sampleCount = C4_E4_SINE_WAV_NUMBER_OF_SAMPLES;
-    break;
-  case sound_c4_e4_g4_sine_e:
-    sound_array = C4_E4_G4_sine_wav;
-    sound_sampleCount = C4_E4_G4_SINE_WAV_NUMBER_OF_SAMPLES;
-    break;
-  case sound_c4_e4_g4_c5_sine_e:
-    sound_array = C4_E4_G4_C5_sine_wav;
-    sound_sampleCount = C4_E4_G4_C5_SINE_WAV_NUMBER_OF_SAMPLES;
-    break;
-  default:
-    printf("sound_setSound(): bogus sound value(%d)\n", sound);
-  }
+  sound_array = soundsLUT[switchIndex];
+  sound_sampleCount = C4_SINE_WAV_NUMBER_OF_SAMPLES;
+  
 }
 
 // Used to set the volume. Use one of the provided values.

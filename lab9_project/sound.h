@@ -51,7 +51,7 @@ sound_status_t sound_init();
 void sound_tick();
 
 // Sets the sound and starts playing it immediately.
-void sound_playSound(sound_sounds_t sound);
+void sound_playSound(uint16_t switchIndex);
 
 // Returns true if the sound is still playing.
 bool sound_isBusy();
@@ -61,7 +61,7 @@ bool sound_isSoundComplete();
 
 // Use this to set the base address for the array containing sound data.
 // Allow sounds to be interrupted.
-void sound_setSound(sound_sounds_t sound);
+void sound_setSound(uint16_t switchIndex);
 
 // Used to set the volume. Use one of the provided values.
 void sound_setVolume(sound_volume_t);

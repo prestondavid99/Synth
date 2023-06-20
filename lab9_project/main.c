@@ -11,46 +11,26 @@ sound_sounds_t currSound() {}
 int main() {
 
   writeFile();
+
   sound_init();
   buttons_init();
   switches_init();
 
+  sound_setVolume(sound_mediumHighVolume_e);
+
   uint8_t buttonsVal = buttons_read();
-  uint8_t switchesVal;
-
-  sound_sounds_t currSound;
-
-  if (switchesVal == 8) {
-    currSound = sound_c4_sine_e;
-  } else if (switchesVal == 12) {
-    currSound = sound_c4_e4_sine_e;
-  } else if (switchesVal == 14) {
-    currSound = sound_c4_e4_g4_sine_e;
-  } else if (switchesVal == 15) {
-    currSound = sound_c4_e4_g4_c5_sine_e;
-  }
+  uint8_t switchesVal = switches_read();
 
   sound_tick();
-  sound_playSound(currSound);
+  sound_playSound(switchesVal);
 
-  uint8_t previousSwitchesVal;
-  while (1) {
-    previousSwitchesVal = switchesVal;
-    if (switchesVal == 8) {
-      currSound = sound_c4_sine_e;
-    } else if (switchesVal == 12) {
-      currSound = sound_c4_e4_sine_e;
-    } else if (switchesVal == 14) {
-      currSound = sound_c4_e4_g4_sine_e;
-    } else if (switchesVal == 15) {
-      currSound = sound_c4_e4_g4_c5_sine_e;
-    }
-    switchesVal = switches_read();
-    sound_tick();
-    if (switchesVal != previousSwitchesVal) {
-      sound_stopSound();
-      sound_playSound(currSound);
-    }
-  }
-  printf("done.\n");
+  // while (1) {
+  //   switchesVal = switches_read();
+  //   sound_tick();
+  //   if () {
+  //     sound_stopSound();
+  //     sound_playSound();
+  //   }
+  // }
+  // printf("done.\n");
 }
