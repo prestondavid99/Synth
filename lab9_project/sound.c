@@ -105,6 +105,10 @@ uint16_t *soundsLUT[16] = {
     C5_sine_wav,    C4_C5_sine_wav,    E4_C5_sine_wav,    C4_E4_C5_sine_wav,
     G4_C5_sine_wav, C4_G4_C5_sine_wav, E4_G4_C5_sine_wav, C4_E4_G4_C5_sine_wav};
 
+uint16_t **getSoundsLUT() {
+  return soundsLUT;
+}
+
 volatile static sound_st_t currentState = sound_init_st;
 
 // Reset the TX FIFO.
@@ -229,7 +233,7 @@ void sound_tick() {
 }
 
 // Sets the sound and starts playing it immediately.
-void sound_playSound(uint16_t switchIndex) {
+void sound_playSound(uint8_t switchIndex) {
   sound_setSound(switchIndex); // Set the sound to be played.
   sound_startSound();    // Start playing the sound.
 }
@@ -244,7 +248,7 @@ bool sound_isSoundComplete() { return (!sound_isBusy()); }
 
 // Use this to set the base address for the array containing sound data.
 // Allow sounds to be interrupted.
-void sound_setSound(uint16_t switchIndex) {
+void sound_setSound(uint8_t switchIndex) {
   if (sound_isBusy()) { // You are currently playing some sound.
     sound_stopSound(); // Stop the sound and reset the state-machine, FIFO, etc.
   }

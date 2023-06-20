@@ -10,8 +10,6 @@ sound_sounds_t currSound() {}
 
 int main() {
 
-  writeFile();
-
   sound_init();
   buttons_init();
   switches_init();
@@ -21,16 +19,20 @@ int main() {
   uint8_t buttonsVal = buttons_read();
   uint8_t switchesVal = switches_read();
 
+  printf("%d\n", switchesVal);
+  uint16_t **LUT = getSoundsLUT();
+  printf("%d\n", LUT[switchesVal][2]);
+
   sound_tick();
   sound_playSound(switchesVal);
 
-  // while (1) {
-  //   switchesVal = switches_read();
-  //   sound_tick();
-  //   if () {
-  //     sound_stopSound();
-  //     sound_playSound();
-  //   }
-  // }
-  // printf("done.\n");
+  while (1) {
+    switchesVal = switches_read();
+    sound_tick();
+    if (!sound_isBusy) {
+      sound_stopSound();
+      sound_playSound(switchesVal);
+    }
+  }
+  printf("done.\n");
 }

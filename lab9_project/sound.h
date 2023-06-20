@@ -47,11 +47,13 @@ typedef enum {
 // Must be called before using the sound state machine.
 sound_status_t sound_init();
 
+uint16_t **getSoundsLUT();
+
 // Standard tick function.
 void sound_tick();
 
 // Sets the sound and starts playing it immediately.
-void sound_playSound(uint16_t switchIndex);
+void sound_playSound(uint8_t switchIndex);
 
 // Returns true if the sound is still playing.
 bool sound_isBusy();
@@ -61,7 +63,7 @@ bool sound_isSoundComplete();
 
 // Use this to set the base address for the array containing sound data.
 // Allow sounds to be interrupted.
-void sound_setSound(uint16_t switchIndex);
+void sound_setSound(uint8_t switchIndex);
 
 // Used to set the volume. Use one of the provided values.
 void sound_setVolume(sound_volume_t);
