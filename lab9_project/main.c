@@ -1,4 +1,5 @@
 #include "buttons.h"
+#include "oscillator.h"
 #include "sound.h"
 #include "sounds/C4_sine.wav.h"
 #include "switches.h"
@@ -8,6 +9,8 @@
 sound_sounds_t currSound() {}
 
 int main() {
+
+  writeFile();
   sound_init();
   buttons_init();
   switches_init();
