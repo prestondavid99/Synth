@@ -5,7 +5,7 @@
 int main() {
   sound_init();
   sound_tick();
-  sound_playSound(sound_cMidi_e);
+  sound_playSound(sound_c4_sine_e);
   
   while (1) {
     sound_tick();

@@ -11,6 +11,7 @@ powerUp48k.wav.c
 powerUp48k.wav.c
 screamAndDie48k.wav.c
 C_New.wav.c
+C4_sine.wav.c
 )
 
 target_link_libraries(sounds ${330_LIBS})

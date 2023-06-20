@@ -34,7 +34,8 @@ typedef enum {
   sound_gameOver_e,        // Sound made when the game is over.
   sound_returnToBase_e,    // Remind the user that the game is over.
   sound_oneSecondSilence_e, // One second of silence.
-  sound_cMidi_e            // Midi c note sound
+  sound_cMidi_e,            // Midi c note sound
+  sound_c4_sine_e
 } sound_sounds_t;
 
 // Just provide 4 volume settings.

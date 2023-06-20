@@ -21,6 +21,7 @@ For questions, contact Brad Hutchings or Jeff Goeders, https://ece.byu.edu/
 #include "sounds/screamAndDie48k.wav.h"
 #include "sounds/C_New.wav.h"
 #include "sounds/C_New.wav.h"
+#include "sounds/C4_sine.wav.h"
 #include "timer_ps.h"
 #include "xiicps.h"
 #include "xil_printf.h"
@@ -279,6 +280,10 @@ void sound_setSound(sound_sounds_t sound) {
   case sound_cMidi_e:
     sound_array = C_New_wav;
     sound_sampleCount = C_NEW_WAV_NUMBER_OF_SAMPLES;
+    break;
+  case sound_c4_sine_e:
+    sound_array = C4_sine_wav;
+    sound_sampleCount = C4_SINE_WAV_NUMBER_OF_SAMPLES;
     break;
   default:
     printf("sound_setSound(): bogus sound value(%d)\n", sound);
