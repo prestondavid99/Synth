@@ -10,7 +10,14 @@ float sineOscillator(float freq, float amp) {
 }
 
 void writeFile() {
-  FILE *fptr = fopen("output.c", "w");
+  FILE *fptr;
+  fptr = fopen("soundOutput.c", "w");
+  if (fptr == NULL) {
+    printf("Error opening file\n");
+  } else {
+    printf("Writing File...\n");
+  }
+
   fputs("#include <stdint.h> \n\n", fptr);
   fclose(fptr);
 }
