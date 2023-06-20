@@ -22,6 +22,7 @@
         "plane.h": "c",
         "config.h": "c",
         "pacmandeath.wav.h": "c",
-        "interrupts.h": "c"
+        "interrupts.h": "c",
+        "gunempty48k.wav.h": "c"
     }
 }

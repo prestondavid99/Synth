@@ -25,17 +25,30 @@ typedef uint32_t sound_status_t;
 
 // sound-specific defines.
 typedef enum {
-  sound_gameStart_e,       // Play a sound when the game starts.
-  sound_gunFire_e,         // Standard laser firing sound.
-  sound_hit_e,             // Player was hit by someone else.
-  sound_gunClick_e,        // Player pulled trigger but the clip is empty.
-  sound_gunReload_e,       // Sound made when the gun reloads.
-  sound_loseLife_e,        // Sound made when you are hit enough times.
-  sound_gameOver_e,        // Sound made when the game is over.
-  sound_returnToBase_e,    // Remind the user that the game is over.
+  sound_gameStart_e,        // Play a sound when the game starts.
+  sound_gunFire_e,          // Standard laser firing sound.
+  sound_hit_e,              // Player was hit by someone else.
+  sound_gunClick_e,         // Player pulled trigger but the clip is empty.
+  sound_gunReload_e,        // Sound made when the gun reloads.
+  sound_loseLife_e,         // Sound made when you are hit enough times.
+  sound_gameOver_e,         // Sound made when the game is over.
+  sound_returnToBase_e,     // Remind the user that the game is over.
   sound_oneSecondSilence_e, // One second of silence.
-  sound_cMidi_e,            // Midi c note sound
-  sound_c4_sine_e
+
+  
+  sound_c4_sine_e,
+  sound_e4_sine_e,
+  sound_g4_sine_e,
+  sound_c5_sine_e,
+
+  sound_c4_e4_sine_e,
+  sound_c4_g4_sine_e,
+  sound_c4_c5_sine_e,
+
+  sound_c4_e4_g4_sine_e,
+  sound_c4_e4_c5_sine_e,
+
+  sound_c4_e4_g4_c5_sine_e
 } sound_sounds_t;
 
 // Just provide 4 volume settings.
