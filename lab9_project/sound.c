@@ -11,10 +11,24 @@ For questions, contact Brad Hutchings or Jeff Goeders, https://ece.byu.edu/
 
 #include "interrupts.h" // Just for sound_runTest().
 #include "sound.h"
-#include "sounds/C4_E4_G4_C5_sine.wav.h"
-#include "sounds/C4_E4_G4_sine.wav.h"
-#include "sounds/C4_E4_sine.wav.h"
+
 #include "sounds/C4_sine.wav.h"
+#include "sounds/E4_sine.wav.h"
+#include "sounds/C4_E4_sine.wav.h"
+#include "sounds/C4_E4_sine.wav.h"
+#include "sounds/G4_sine.wav.h"
+#include "sounds/C4_G4_sine.wav.h"
+#include "sounds/E4_G4_sine.wav.h"
+#include "sounds/C4_E4_G4_sine.wav.h"
+#include "sounds/C5_sine.wav.h"
+#include "sounds/C4_C5_sine.wav.h"
+#include "sounds/E4_C5_sine.wav.h"
+#include "sounds/C4_E4_C5_sine.wav.h"
+#include "sounds/G4_C5_sine.wav.h"
+#include "sounds/C4_G4_C5_sine.wav.h"
+#include "sounds/E4_G4_C5_sine.wav.h"
+#include "sounds/C4_E4_G4_C5_sine.wav.h"
+
 #include "sounds/gameBoyStartup.wav.h"
 #include "timer_ps.h"
 #include "xiicps.h"
@@ -85,6 +99,12 @@ typedef enum {
   sound_wait_st, // Waiting for enable to play sound.
   sound_play_st  // In the process of playing the sound.
 } sound_st_t;
+
+uint16_t **soundsLUT[16] = {
+    no_sound,       C4_sine_wav,       E4_sine_wav,       C4_E4_sine_wav,
+    G4_sine_wav,    C4_G4_sine_wav,    E4_G4_sine_wav,    C4_E4_G4_sine_wave,
+    C5_sine_wav,    C4_C5_sine_wav,    E4_C5_sine_wav,    C4_E4_C5_sine_wav,
+    G4_C5_sine_wav, C4_G4_C5_sine_wav, E4_G4_C5_sine_wav, C4_E4_G4_C5_sine_wav};
 
 volatile static sound_st_t currentState = sound_init_st;
 

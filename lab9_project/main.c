@@ -45,9 +45,9 @@ int main() {
     switchesVal = switches_read();
     sound_tick();
     if (switchesVal != previousSwitchesVal) {
-      sound_stopSound();sound_sounds_t currSound() {}
+      sound_stopSound();
       sound_playSound(currSound);
     }
   }
   printf("done.\n");
-}sound_sounds_t currSound() {}
+}

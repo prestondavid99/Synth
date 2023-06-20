@@ -23,6 +23,8 @@
         "config.h": "c",
         "pacmandeath.wav.h": "c",
         "interrupts.h": "c",
-        "gunempty48k.wav.h": "c"
+        "gunempty48k.wav.h": "c",
+        "c4_sine.wav.h": "c",
+        "gameboystartup.wav.h": "c"
     }
 }
