@@ -1,13 +1,11 @@
 #include "buttons.h"
 #include "sound.h"
+#include "sounds/C4_sine.wav.h"
 #include "switches.h"
 #include <stdint.h>
 #include <stdio.h>
 
-sound_sounds_t currSound() {
-  
-
-}
+sound_sounds_t currSound() { return switches_read(); }
 
 int main() {
   sound_init();
@@ -15,10 +13,7 @@ int main() {
   switches_init();
 
   uint8_t buttonsVal = buttons_read();
-  uint8_t switchesVal = switches_read();
-
-  printf("%d\n", buttonsVal);
-  printf("%d\n", switchesVal);
+  uint8_t switchesVal;
 
   sound_sounds_t currSound;
 
