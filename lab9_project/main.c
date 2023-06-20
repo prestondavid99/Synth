@@ -5,7 +5,7 @@
 #include <stdint.h>
 #include <stdio.h>
 
-sound_sounds_t currSound() { return switches_read(); }
+sound_sounds_t currSound() {}
 
 int main() {
   sound_init();
@@ -45,9 +45,9 @@ int main() {
     switchesVal = switches_read();
     sound_tick();
     if (switchesVal != previousSwitchesVal) {
-      sound_stopSound();
+      sound_stopSound();sound_sounds_t currSound() {}
       sound_playSound(currSound);
     }
   }
   printf("done.\n");
-}
+}sound_sounds_t currSound() {}
