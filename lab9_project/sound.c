@@ -19,6 +19,8 @@ For questions, contact Brad Hutchings or Jeff Goeders, https://ece.byu.edu/
 #include "sounds/pacmanDeath.wav.h"
 #include "sounds/powerUp48k.wav.h"
 #include "sounds/screamAndDie48k.wav.h"
+#include "sounds/C_New.wav.h"
+#include "sounds/C_New.wav.h"
 #include "timer_ps.h"
 #include "xiicps.h"
 #include "xil_printf.h"
@@ -273,6 +275,10 @@ void sound_setSound(sound_sounds_t sound) {
   case sound_oneSecondSilence_e:
     sound_array = soundOfSilence;
     sound_sampleCount = ONE_SECOND_OF_SOUND_ARRAY_SIZE;
+    break;
+  case sound_cMidi_e:
+    sound_array = C_New_wav;
+    sound_sampleCount = C_NEW_WAV_NUMBER_OF_SAMPLES;
     break;
   default:
     printf("sound_setSound(): bogus sound value(%d)\n", sound);
