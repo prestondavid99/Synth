@@ -15,14 +15,7 @@ For questions, contact Brad Hutchings or Jeff Goeders, https://ece.byu.edu/
 #include "sounds/C4_E4_G4_sine.wav.h"
 #include "sounds/C4_E4_sine.wav.h"
 #include "sounds/C4_sine.wav.h"
-#include "sounds/bcfire01_48k.wav.h"
 #include "sounds/gameBoyStartup.wav.h"
-#include "sounds/gameOver48k.wav.h"
-#include "sounds/gunEmpty48k.wav.h"
-#include "sounds/ouch48k.wav.h"
-#include "sounds/pacmanDeath.wav.h"
-#include "sounds/powerUp48k.wav.h"
-#include "sounds/screamAndDie48k.wav.h"
 #include "timer_ps.h"
 #include "xiicps.h"
 #include "xil_printf.h"
@@ -245,35 +238,6 @@ void sound_setSound(sound_sounds_t sound) {
     sound_sampleCount =
         GAMEBOYSTARTUP_WAV_NUMBER_OF_SAMPLES; // Size of the array.
     break;
-  case sound_gunFire_e:
-    sound_array = bcfire01_48k_wav; // Set the array holding the data.
-    sound_sampleCount =
-        BCFIRE01_48K_WAV_NUMBER_OF_SAMPLES; // Size of the array.
-    break;
-  case sound_hit_e:
-    sound_array = ouch48k_wav; // You get the idea...
-    sound_sampleCount = OUCH48K_WAV_NUMBER_OF_SAMPLES;
-    break;
-  case sound_gunClick_e:
-    sound_array = gunEmpty48k_wav;
-    sound_sampleCount = GUNEMPTY48K_WAV_NUMBER_OF_SAMPLES;
-    break;
-  case sound_gunReload_e:
-    sound_array = powerUp48k_wav;
-    sound_sampleCount = POWERUP48K_WAV_NUMBER_OF_SAMPLES;
-    break;
-  case sound_loseLife_e:
-    sound_array = screamAndDie48k_wav;
-    sound_sampleCount = SCREAMANDDIE48K_WAV_NUMBER_OF_SAMPLES;
-    break;
-  case sound_gameOver_e:
-    sound_array = pacmanDeath_wav;
-    sound_sampleCount = PACMANDEATH_WAV_NUMBER_OF_SAMPLES;
-    break;
-  case sound_returnToBase_e:
-    sound_array = gameOver48k_wav;
-    sound_sampleCount = GAMEOVER48K_WAV_NUMBER_OF_SAMPLES;
-    break;
   case sound_oneSecondSilence_e:
     sound_array = soundOfSilence;
     sound_sampleCount = ONE_SECOND_OF_SOUND_ARRAY_SIZE;
@@ -310,57 +274,6 @@ void sound_stopSound() {
   sound_playSoundFlag = false; // disable the state-machine.
   currentState =
       sound_wait_st; // Force the state-machine back to the wait state.
-}
-
-// Plays several sounds.
-// To invoke, just place this in your main.
-// Completely stand alone, doesn't require interrupts, etc.
-void sound_runTest() {
-  printf("****************** sound_runTest() ******************\n");
-
-  sound_init();
-  sound_tick();
-  sound_setSound(sound_gunClick_e);
-  printf("playing gunClick_e\n");
-  sound_startSound();
-  while (1) {
-    sound_tick();
-    if (!sound_isBusy())
-      break;
-  }
-  sound_setSound(sound_gunFire_e);
-  printf("playing gunFire_e\n");
-  sound_startSound();
-  while (1) {
-    sound_tick();
-    if (!sound_isBusy())
-      break;
-  }
-  sound_setSound(sound_gunReload_e);
-  printf("playing gunReload_e\n");
-  sound_startSound();
-  while (1) {
-    sound_tick();
-    if (!sound_isBusy())
-      break;
-  }
-  sound_setSound(sound_loseLife_e);
-  printf("playing loseLife_e\n");
-  sound_startSound();
-  while (1) {
-    sound_tick();
-    if (!sound_isBusy())
-      break;
-  }
-  sound_setSound(sound_gameOver_e);
-  printf("playing gameOver_e\n");
-  sound_startSound();
-  while (1) {
-    sound_tick();
-    if (!sound_isBusy())
-      break;
-  }
-  printf("done.\n");
 }
 
 /**********************************************************************************

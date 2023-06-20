@@ -1,6 +1,7 @@
 #include "buttons.h"
 #include "oscillator.h"
 #include "sound.h"
+#include "sounds/C4_sine.wav.h"
 #include "switches.h"
 #include <stdint.h>
 #include <stdio.h>
@@ -15,10 +16,7 @@ int main() {
   switches_init();
 
   uint8_t buttonsVal = buttons_read();
-  uint8_t switchesVal = switches_read();
-
-  printf("%d\n", buttonsVal);
-  printf("%d\n", switchesVal);
+  uint8_t switchesVal;
 
   sound_sounds_t currSound;
 
@@ -50,9 +48,9 @@ int main() {
     switchesVal = switches_read();
     sound_tick();
     if (switchesVal != previousSwitchesVal) {
-      sound_stopSound();
+      sound_stopSound();sound_sounds_t currSound() {}
       sound_playSound(currSound);
     }
   }
   printf("done.\n");
-}
+}sound_sounds_t currSound() {}
