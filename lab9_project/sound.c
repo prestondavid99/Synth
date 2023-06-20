@@ -11,6 +11,10 @@ For questions, contact Brad Hutchings or Jeff Goeders, https://ece.byu.edu/
 
 #include "interrupts.h" // Just for sound_runTest().
 #include "sound.h"
+#include "sounds/C4_E4_G4_C5_sine.wav.h"
+#include "sounds/C4_E4_G4_sine.wav.h"
+#include "sounds/C4_E4_sine.wav.h"
+#include "sounds/C4_sine.wav.h"
 #include "sounds/bcfire01_48k.wav.h"
 #include "sounds/gameBoyStartup.wav.h"
 #include "sounds/gameOver48k.wav.h"
@@ -19,9 +23,6 @@ For questions, contact Brad Hutchings or Jeff Goeders, https://ece.byu.edu/
 #include "sounds/pacmanDeath.wav.h"
 #include "sounds/powerUp48k.wav.h"
 #include "sounds/screamAndDie48k.wav.h"
-#include "sounds/C_New.wav.h"
-#include "sounds/C_New.wav.h"
-#include "sounds/C4_sine.wav.h"
 #include "timer_ps.h"
 #include "xiicps.h"
 #include "xil_printf.h"
@@ -277,13 +278,21 @@ void sound_setSound(sound_sounds_t sound) {
     sound_array = soundOfSilence;
     sound_sampleCount = ONE_SECOND_OF_SOUND_ARRAY_SIZE;
     break;
-  case sound_cMidi_e:
-    sound_array = C_New_wav;
-    sound_sampleCount = C_NEW_WAV_NUMBER_OF_SAMPLES;
-    break;
   case sound_c4_sine_e:
     sound_array = C4_sine_wav;
     sound_sampleCount = C4_SINE_WAV_NUMBER_OF_SAMPLES;
+    break;
+  case sound_c4_e4_sine_e:
+    sound_array = C4_E4_sine_wav;
+    sound_sampleCount = C4_E4_SINE_WAV_NUMBER_OF_SAMPLES;
+    break;
+  case sound_c4_e4_g4_sine_e:
+    sound_array = C4_E4_G4_sine_wav;
+    sound_sampleCount = C4_E4_G4_SINE_WAV_NUMBER_OF_SAMPLES;
+    break;
+  case sound_c4_e4_g4_c5_sine_e:
+    sound_array = C4_E4_G4_C5_sine_wav;
+    sound_sampleCount = C4_E4_G4_C5_SINE_WAV_NUMBER_OF_SAMPLES;
     break;
   default:
     printf("sound_setSound(): bogus sound value(%d)\n", sound);
