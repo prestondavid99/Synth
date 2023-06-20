@@ -10,7 +10,6 @@ pacmanDeath.wav.c
 powerUp48k.wav.c
 powerUp48k.wav.c
 screamAndDie48k.wav.c
-C_New.wav.c
 C4_sine.wav.c
 )
 

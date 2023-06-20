@@ -1,8 +1,9 @@
 #include "buttons.h"
-#include "switches.h"
+#include "oscillator.h"
 #include "sound.h"
-#include <stdio.h>
+#include "switches.h"
 #include <stdint.h>
+#include <stdio.h>
 
 int main() {
   sound_init();
@@ -17,7 +18,7 @@ int main() {
 
   sound_tick();
   sound_playSound(sound_c4_sine_e);
-  
+
   while (1) {
     sound_tick();
     if (!sound_isBusy())

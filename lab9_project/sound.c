@@ -11,6 +11,7 @@ For questions, contact Brad Hutchings or Jeff Goeders, https://ece.byu.edu/
 
 #include "interrupts.h" // Just for sound_runTest().
 #include "sound.h"
+#include "sounds/C4_sine.wav.h"
 #include "sounds/bcfire01_48k.wav.h"
 #include "sounds/gameBoyStartup.wav.h"
 #include "sounds/gameOver48k.wav.h"
@@ -19,9 +20,6 @@ For questions, contact Brad Hutchings or Jeff Goeders, https://ece.byu.edu/
 #include "sounds/pacmanDeath.wav.h"
 #include "sounds/powerUp48k.wav.h"
 #include "sounds/screamAndDie48k.wav.h"
-#include "sounds/C_New.wav.h"
-#include "sounds/C_New.wav.h"
-#include "sounds/C4_sine.wav.h"
 #include "timer_ps.h"
 #include "xiicps.h"
 #include "xil_printf.h"
