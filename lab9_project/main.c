@@ -15,15 +15,21 @@ int main() {
   sound_setVolume(sound_mediumHighVolume_e);
 
   uint8_t buttonsVal = buttons_read();
-  uint8_t switchesVal = switches_read();
-
+  uint8_t previousSwitchesVal, switchesVal = switches_read();
 
   sound_tick();
   sound_setSound(switchesVal);
   sound_startSound();
   while (1) {
+    switchesVal = switches_read();
     sound_tick();
-    if (!sound_isBusy())
-      break;
+    if (previousSwitchesVal != switchesVal) {
+      sound_stopSound();
+      sound_playSound(switchesVal);
+    }
+    if (!sound_isBusy()) {
+      sound_playSound(switchesVal);
+    }
+    previousSwitchesVal = switchesVal;
   }
 }
