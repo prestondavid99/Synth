@@ -8,10 +8,12 @@ For questions, contact Brad Hutchings or Jeff Goeders, https://ece.byu.edu/
 */
 
 /************************************************************************/
-/*																		*/
+/*
+ */
 /*	timer_ps.c	--	Timer Delay	for Zynq systems
  */
-/*																		*/
+/*
+ */
 /************************************************************************/
 /*	Author: Sam Bobrowicz
  */
@@ -20,26 +22,31 @@ For questions, contact Brad Hutchings or Jeff Goeders, https://ece.byu.edu/
 /************************************************************************/
 /*  Module Description:
  */
-/*																		*/
+/*
+ */
 /*		Implements an accurate delay function using the scu	timer.
  */
 /*		Code from this module will cause conflicts with other code that
  */
 /*		requires the Zynq's scu timer.
  */
-/*																		*/
+/*
+ */
 /*		This module contains code from the Xilinx Demo titled
  */
 /*		"xscutimer_polled_example.c"
  */
-/*																		*/
+/*
+ */
 /************************************************************************/
 /*  Revision History:
  */
-/* 																		*/
+/*
+ */
 /*		2/14/2014(SamB): Created
  */
-/*																		*/
+/*
+ */
 /************************************************************************/
 
 /* ------------------------------------------------------------ */

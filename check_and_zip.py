@@ -287,7 +287,7 @@ def build():
     BUILD_PATH.mkdir()
 
     # Run cmake
-    cmake_cmd = ["cmake", "..", "-DEMU=1"]
+    cmake_cmd = ["cmake", ".."]
     proc = subprocess.run(cmake_cmd, cwd=BUILD_PATH, check=False)
     if proc.returncode:
         return False
