@@ -99,7 +99,11 @@ typedef enum {
   sound_play_st  // In the process of playing the sound.
 } sound_st_t;
 
-uint16_t *soundsLUT[16] = {
+uint16_t *soundsLUT[48] = {
+    soundOfSilence, C4_sine_wav,       E4_sine_wav,       C4_E4_sine_wav,
+    G4_sine_wav,    C4_G4_sine_wav,    E4_G4_sine_wav,    C4_E4_G4_sine_wav,
+    C5_sine_wav,    C4_C5_sine_wav,    E4_C5_sine_wav,    C4_E4_C5_sine_wav,
+    G4_C5_sine_wav, C4_G4_C5_sine_wav, E4_G4_C5_sine_wav, C4_E4_G4_C5_sine_wav,
     soundOfSilence, C4_sine_wav,       E4_sine_wav,       C4_E4_sine_wav,
     G4_sine_wav,    C4_G4_sine_wav,    E4_G4_sine_wav,    C4_E4_G4_sine_wav,
     C5_sine_wav,    C4_C5_sine_wav,    E4_C5_sine_wav,    C4_E4_C5_sine_wav,

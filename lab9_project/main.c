@@ -6,20 +6,30 @@
 #include <stdint.h>
 #include <stdio.h>
 
-sound_sounds_t currSound() {}
-
 int main() {
+
   sound_init();
+  buttons_init();
   switches_init();
+
   sound_setVolume(sound_mediumHighVolume_e);
+
+  uint8_t buttonsVal = buttons_read();
+  uint8_t previousSwitchesVal, switchesVal = switches_read();
+
   sound_tick();
-  sound_playSound(0);
+  sound_setSound(switchesVal);
+  sound_startSound();
   while (1) {
+    switchesVal = switches_read();
     sound_tick();
-    uint8_t switchesVal = switches_read();
-    printf("%d\n", switchesVal);
+    if (previousSwitchesVal != switchesVal) {
+      sound_stopSound();
+      sound_playSound(switchesVal);
+    }
     if (!sound_isBusy()) {
       sound_playSound(switchesVal);
     }
+    previousSwitchesVal = switchesVal;
   }
 }
