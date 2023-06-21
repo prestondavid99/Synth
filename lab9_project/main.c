@@ -6,30 +6,33 @@
 #include <stdint.h>
 #include <stdio.h>
 
-int main() {
+uint8_t previousSwitchesVal, incVal, switchesVal, buttonsVal;
 
+// Initialization function for the Lab 9 Synth
+void synth_init() {
   sound_init();
+  sound_setVolume(sound_mediumLowVolume_e);
+
   buttons_init();
   switches_init();
+}
 
-  sound_setVolume(sound_mediumHighVolume_e);
-
-  uint8_t buttonsVal = buttons_read();
-  uint8_t previousSwitchesVal, switchesVal = switches_read();
-
-  sound_tick();
-  sound_setSound(switchesVal);
-  sound_startSound();
+int main() {
+  synth_init();
   while (1) {
-    switchesVal = switches_read();
+    buttonsVal = buttons_read();
+    switchesVal = switches_read() + buttons_read();
     sound_tick();
+    // loop the current sound
+    if (!sound_isBusy())
+      sound_playSound(switchesVal);
+
+    // check if sound has been changed since last
     if (previousSwitchesVal != switchesVal) {
       sound_stopSound();
       sound_playSound(switchesVal);
     }
-    if (!sound_isBusy()) {
-      sound_playSound(switchesVal);
-    }
+
     previousSwitchesVal = switchesVal;
   }
 }
