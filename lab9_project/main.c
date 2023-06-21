@@ -47,10 +47,10 @@ int main() {
       sound_playSound(incVal);
 
     // check if sound has been changed since last
-    if (previousSwitchesVal != switchesVal) {
+    if (previousSwitchesVal != incVal) {
       sound_stopSound();
       sound_playSound(incVal);
     }
-    previousSwitchesVal = switchesVal;
+    previousSwitchesVal = incVal;
   }
 }
