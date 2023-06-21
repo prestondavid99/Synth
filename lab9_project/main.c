@@ -12,7 +12,8 @@ int main() {
   sound_init();
   switches_init();
   sound_setVolume(sound_mediumHighVolume_e);
-
+  sound_tick();
+  sound_playSound(0);
   while (1) {
     sound_tick();
     uint8_t switchesVal = switches_read();
