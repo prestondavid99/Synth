@@ -28,7 +28,39 @@ For questions, contact Brad Hutchings or Jeff Goeders, https://ece.byu.edu/
 #include "sounds/G4_C5_sine.wav.h"
 #include "sounds/G4_sine.wav.h"
 
-#include "sounds/gameBoyStartup.wav.h"
+#include "sounds/F4_F5_sine.wav.h"
+#include "sounds/F4_A4_F5_sine.wav.h"
+#include "sounds/F4_A4_C5_F5_sine.wav.h"
+#include "sounds/F4_A4_C5_sine.wav.h"
+#include "sounds/F4_A4_sine.wav.h"
+#include "sounds/F4_C5_F5_sine.wav.h"
+#include "sounds/F4_C5_sine.wav.h"
+#include "sounds/F4_sine.wav.h"
+#include "sounds/F5_sine.wav.h"
+#include "sounds/A4_F5_sine.wav.h"
+#include "sounds/A4_C5_F5_sine.wav.h"
+#include "sounds/A4_C5_sine.wav.h"
+#include "sounds/A4_sine.wav.h"
+#include "sounds/C5_F5_sine.wav.h"
+#include "sounds/C5_sine.wav.h"
+
+#include "sounds/G4_G5_sine.wav.h"
+#include "sounds/G4_B4_G5_sine.wav.h"
+#include "sounds/G4_B4_D5_G5_sine.wav.h"
+#include "sounds/G4_B4_D5_sine.wav.h"
+#include "sounds/G4_B4_sine.wav.h"
+#include "sounds/G4_D5_G5_sine.wav.h"
+#include "sounds/G4_D5_sine.wav.h"
+#include "sounds/G4_sine.wav.h"
+#include "sounds/G5_sine.wav.h"
+#include "sounds/B4_G5_sine.wav.h"
+#include "sounds/B4_D5_G5_sine.wav.h"
+#include "sounds/B4_D5_sine.wav.h"
+#include "sounds/B4_sine.wav.h"
+#include "sounds/D5_G5_sine.wav.h"
+#include "sounds/D5_sine.wav.h"
+
+
 #include "timer_ps.h"
 #include "xiicps.h"
 #include "xil_printf.h"
@@ -104,14 +136,16 @@ uint16_t *soundsLUT[48] = {
     G4_sine_wav,    C4_G4_sine_wav,    E4_G4_sine_wav,    C4_E4_G4_sine_wav,
     C5_sine_wav,    C4_C5_sine_wav,    E4_C5_sine_wav,    C4_E4_C5_sine_wav,
     G4_C5_sine_wav, C4_G4_C5_sine_wav, E4_G4_C5_sine_wav, C4_E4_G4_C5_sine_wav,
-    soundOfSilence, F4_sine_wav,       E4_sine_wav,       C4_E4_sine_wav,
-    G4_sine_wav,    C4_G4_sine_wav,    E4_G4_sine_wav,    C4_E4_G4_sine_wav,
-    C5_sine_wav,    C4_C5_sine_wav,    E4_C5_sine_wav,    C4_E4_C5_sine_wav,
-    G4_C5_sine_wav, C4_G4_C5_sine_wav, E4_G4_C5_sine_wav, C4_E4_G4_C5_sine_wav};
+    soundOfSilence, F4_sine_wav,       A4_sine_wav,       F4_A4_sine_wav,
+    C5_sine_wav,    F4_C5_sine_wav,    A4_C5_sine_wav,    F4_A4_C5_sine_wav,
+    F5_sine_wav,    F4_F5_sine_wav,    A4_F5_sine_wav,    F4_A4_F5_sine_wav,
+    C5_F5_sine_wav, F4_C5_F5_sine_wav, A4_C5_F5_sine_wav, F4_A4_C5_F5_sine_wav,
+    soundOfSilence, G4_sine_wav,       B4_sine_wav,       G4_B4_sine_wav,
+    D5_sine_wav,    G4_D5_sine_wav,    B4_D5_sine_wav,    G4_B4_D5_sine_wav,
+    G5_sine_wav,    G4_G5_sine_wav,    B4_G5_sine_wav,    G4_B4_G5_sine_wav,
+    D5_G5_sine_wav, G4_D5_G5_sine_wav, B4_D5_G5_sine_wav, G4_B4_D5_G5_sine_wav};
 
-uint16_t **getSoundsLUT() {
-  return soundsLUT;
-}
+uint16_t **getSoundsLUT() { return soundsLUT; }
 
 volatile static sound_st_t currentState = sound_init_st;
 
@@ -239,7 +273,7 @@ void sound_tick() {
 // Sets the sound and starts playing it immediately.
 void sound_playSound(uint8_t switchIndex) {
   sound_setSound(switchIndex); // Set the sound to be played.
-  sound_startSound();    // Start playing the sound.
+  sound_startSound();          // Start playing the sound.
 }
 
 // Returns true if the sound is still playing.
@@ -258,7 +292,6 @@ void sound_setSound(uint8_t switchIndex) {
   }
   sound_array = soundsLUT[switchIndex];
   sound_sampleCount = C4_SINE_WAV_NUMBER_OF_SAMPLES;
-  
 }
 
 // Used to set the volume. Use one of the provided values.
